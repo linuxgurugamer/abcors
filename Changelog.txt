@@ -1,0 +1,29 @@
+0.5.0
+    Adoption by LGG
+    Added settings page
+    Removed old code for xml settings
+    Added AssemblyVersion.tt
+    Added .version file
+	Added Changelog
+
+0.4.1
+	Fixed null ref error spam (thanks to Kerbas-ad-astra)
+
+0.4.0
+	Updated for ksp 1.2
+
+0.3.0
+	There is now a config file for tweaking the display
+	Will now show the orbit info of the targetted craft (on by default, can be disabled)
+	Now able to show the speed of the craft (off by default, can be enabled)
+	Now able to show the angle to prograde, a.k.a.: ejection angle (off by default, can be enabled)
+
+0.2.0
+	Updated for ksp 1.1
+
+0.1.1
+	fix for very big altitudes when orbiting Kerbol
+
+0.1.0
+	This is a request from ABookCase who wanted a simple mod that displays altitude of an orbit at a point 
+	by hovering the mouse over it. So I did that and also added time information.
