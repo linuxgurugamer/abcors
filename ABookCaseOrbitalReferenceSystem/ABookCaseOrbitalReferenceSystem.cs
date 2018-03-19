@@ -18,24 +18,11 @@ namespace ABCORS
 
         private Rect _popup = new Rect(0f, 0f, 160f, 160f);
 
-        private bool _allowTarget = true;
-        private bool _showTime = true;
-        private bool _showAltitude = true;
-        private bool _showSpeed = false;
-        private bool _showAngleToPrograde = false;
+
 
         protected void Start()
         {
-            PluginConfiguration config = PluginConfiguration.CreateForType<ABookCaseOrbitalReferenceSystem>();
-            config.load();
-            float rectWidth = config.GetValue<int>("displayWidth", 160);
-            float rectHeight = config.GetValue<int>("displayHeight", 160);
-            _popup.Set(0, 0, rectWidth, rectHeight);
-            _allowTarget = config.GetValue<bool>("allowTarget", _allowTarget);
-            _showTime = config.GetValue<bool>("showTime", _showTime);
-            _showAltitude = config.GetValue<bool>("showAltitude", _showAltitude);
-            _showSpeed = config.GetValue<bool>("showSpeed", _showSpeed);
-            _showAngleToPrograde = config.GetValue<bool>("showAngleToPrograde", _showAngleToPrograde);
+            _popup.Set(0, 0, HighLogic.CurrentGame.Parameters.CustomParams<ABCORSSettings>().displayWidth, HighLogic.CurrentGame.Parameters.CustomParams<ABCORSSettings>().displayWidth);
         }
 
         private void Awake()
@@ -67,19 +54,19 @@ namespace ABCORS
             double speed = orbit.getOrbitalSpeedAt(orbit.getObtAtUT(_hitUT));
 
             string labelText = "";
-            if (_showTime)
+            if (HighLogic.CurrentGame.Parameters.CustomParams<ABCORSSettings>().showTime)
             {
                 labelText += "T: " + KSPUtil.PrintTime((int)(Planetarium.GetUniversalTime() - _hitUT), 5, true) + "\n";
             }
-            if (_showAltitude)
+            if (HighLogic.CurrentGame.Parameters.CustomParams<ABCORSSettings>().showAltitude)
             {
                 labelText += "Alt: " + altitude.ToString("N0", CultureInfo.CurrentCulture) + "m\n";
             }
-            if (_showSpeed)
+            if (HighLogic.CurrentGame.Parameters.CustomParams<ABCORSSettings>().showSpeed)
             {
                 labelText += "Vel: " + speed.ToString("N0", CultureInfo.CurrentCulture) + "m/s\n";
             }
-            if (_showAngleToPrograde && orbit.referenceBody.orbit != null)
+            if (HighLogic.CurrentGame.Parameters.CustomParams<ABCORSSettings>().showAngleToPrograde && orbit.referenceBody.orbit != null)
             {
                 Vector3d bodyVel = orbit.referenceBody.orbit.getOrbitalVelocityAtUT(_hitUT);
                 Vector3d shipPos = orbit.getRelativePositionAtUT(_hitUT);
@@ -116,7 +103,7 @@ namespace ABCORS
             }
 
             // no hit on the main vessel, let's try the target
-            if (_allowTarget && FlightGlobals.ActiveVessel.targetObject != null)
+            if (HighLogic.CurrentGame.Parameters.CustomParams<ABCORSSettings>().allowTarget && FlightGlobals.ActiveVessel.targetObject != null)
             {
                 Vessel targetVessel = FlightGlobals.ActiveVessel.targetObject as Vessel;
                 if (targetVessel != null)

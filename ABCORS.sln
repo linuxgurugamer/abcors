@@ -1,9 +1,18 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2005
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ABookCaseOrbitalReferenceSystem", "ABookCaseOrbitalReferenceSystem\ABookCaseOrbitalReferenceSystem.csproj", "{F6031F3E-CCAE-4B66-8A73-3C34958B6F44}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{48736DA2-B98B-4811-8768-91F0136D6603}"
+	ProjectSection(SolutionItems) = preProject
+		ABCORS.version = ABCORS.version
+		buildRelease.bat = buildRelease.bat
+		deploy.bat = deploy.bat
+		License.txt = License.txt
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,5 +27,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CA4C416D-F722-4FF1-A4C1-123A92E4579A}
 	EndGlobalSection
 EndGlobal
