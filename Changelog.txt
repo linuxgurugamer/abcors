@@ -1,3 +1,7 @@
+0.5.0.5
+	Version bump for recompile
+	Updated AssemblyVersion.tt with path-independent code
+
 0.5.0.3
 	Versionfile update
 
