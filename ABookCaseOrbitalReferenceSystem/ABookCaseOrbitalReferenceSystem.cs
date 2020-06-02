@@ -33,7 +33,7 @@ namespace ABCORS
 
         private void Update()
         {
-            _mouseOver = MouseOverOrbit();
+            _mouseOver = MapView.MapIsEnabled && MouseOverOrbit();
 
             if (!_mouseOver)
                 return;
