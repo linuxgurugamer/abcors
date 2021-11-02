@@ -1,3 +1,9 @@
+Changelog
+
+0.5.1.5
+	Thanks to github user @lampeh for this fix:
+		Only show popup in map view
+
 0.5.1.4
 	Added AssemblyFileVersion
 	Updated version file for 1.12
