@@ -3,9 +3,13 @@ using UnityEngine;
 using KSP.IO;
 using System.Linq;
 using System.Globalization;
+using KSP.Localization;
 
 namespace ABCORS
 {
+    /*
+     * 在飞行场景开始时创建一个 ABookCaseOrbitalReferenceSystem 实例，并在飞行场景结束时销毁。
+     */
     [KSPAddon(KSPAddon.Startup.Flight, false)]
     internal class ABookCaseOrbitalReferenceSystem : MonoBehaviour
     {
@@ -13,16 +17,17 @@ namespace ABCORS
         private bool _isTarget = false;
 
         private Orbit _hitOrbit = null;
-        private Vector3 _hitScreenPoint = new Vector3(0, 0, 0);
+        private Vector3 _hitScreenPoint = new Vector3(0, 0, 0);//实例化一个名为 _hitScreenPoint 的三维向量，采用左手坐标系法则。可能是用于获取鼠标在屏幕上的位置。
         private double _hitUT = 0;
 
-        private Rect _popup = new Rect(0f, 0f, 160f, 160f);
+        private Rect _popup = new Rect(0f, 0f, 160f, 160f);//创建一个长和宽都为160的矩形，为浮点数(float)
 
 
 
         protected void Start()
         {
-            _popup.Set(0, 0, HighLogic.CurrentGame.Parameters.CustomParams<ABCORSSettings>().displayWidth, HighLogic.CurrentGame.Parameters.CustomParams<ABCORSSettings>().displayWidth);
+            _popup.Set(0, 0, HighLogic.CurrentGame.Parameters.CustomParams<ABCORSSettings>().displayWidth, HighLogic.CurrentGame.Parameters.CustomParams<ABCORSSettings>().displayHeight);
+            //设置鼠标经过追踪站上激活的轨道时显示的数据的长、宽。_popup.x=0和_popup.y=0可能表示该菜单位于鼠标指针正上方。
         }
 
         private void Awake()
@@ -54,17 +59,21 @@ namespace ABCORS
             double speed = orbit.getOrbitalSpeedAt(orbit.getObtAtUT(_hitUT));
 
             string labelText = "";
+            string Time = Localizer.Format("#autoLoc_Main_Time");
+            string Altitude = Localizer.Format("#autoLoc_Main_Altitude");
+            string Speed = Localizer.Format("#autoLoc_Main_Speed");
+            string AngleToPrograde = Localizer.Format("#autoLoc_Main_AngleToPrograde");
             if (HighLogic.CurrentGame.Parameters.CustomParams<ABCORSSettings>().showTime)
             {
-                labelText += "T: " + KSPUtil.PrintTime((int)(Planetarium.GetUniversalTime() - _hitUT), 5, true) + "\n";
+                labelText += Time + KSPUtil.PrintTime((int)(Planetarium.GetUniversalTime() - _hitUT), 5, true) + "\n";
             }
             if (HighLogic.CurrentGame.Parameters.CustomParams<ABCORSSettings>().showAltitude)
             {
-                labelText += "Alt: " + altitude.ToString("N0", CultureInfo.CurrentCulture) + "m\n";
+                labelText += Altitude + altitude.ToString("N0", CultureInfo.CurrentCulture) + "m\n";
             }
             if (HighLogic.CurrentGame.Parameters.CustomParams<ABCORSSettings>().showSpeed)
             {
-                labelText += "Vel: " + speed.ToString("N0", CultureInfo.CurrentCulture) + "m/s\n";
+                labelText += Speed + speed.ToString("N0", CultureInfo.CurrentCulture) + "m/s\n";
             }
             if (HighLogic.CurrentGame.Parameters.CustomParams<ABCORSSettings>().showAngleToPrograde && orbit.referenceBody.orbit != null)
             {
@@ -77,7 +86,7 @@ namespace ABCORS
                     angle = 360 - angle;
                 }
 
-                labelText += "\u03B1P: " + angle.ToString("N1", CultureInfo.CurrentCulture) + "\u00B0\n";
+                labelText += AngleToPrograde + angle.ToString("N1", CultureInfo.CurrentCulture) + "\u00B0\n";
             }
 
             GUILayout.BeginArea(GUIUtility.ScreenToGUIRect(_popup));

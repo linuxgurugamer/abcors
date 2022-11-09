@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using UnityEngine;
+using KSP.Localization;
 
 // http://forum.kerbalspaceprogram.com/index.php?/topic/147576-modders-notes-for-ksp-12/#comment-2754813
 // search for "Mod integration into Stock Settings
@@ -20,25 +21,25 @@ namespace ABCORS
         public override int SectionOrder { get { return 1; } }
         public override bool HasPresets { get { return false; } }
 
-        [GameParameters.CustomParameterUI("Allow Target")]
+        [GameParameters.CustomParameterUI("#autoLoc_Settings_allowTarget")]
         public bool allowTarget = true;
 
-        [GameParameters.CustomParameterUI("Show Time")]
+        [GameParameters.CustomParameterUI("#autoLoc_Settings_showTime")]
         public bool showTime = true;
 
-        [GameParameters.CustomParameterUI("Show Altitude")]
+        [GameParameters.CustomParameterUI("#autoLoc_Settings_showAltitude")]
         public bool showAltitude = true;
 
-        [GameParameters.CustomParameterUI("Show Speed")]
+        [GameParameters.CustomParameterUI("#autoLoc_Settings_showSpeed")]
         public bool showSpeed = false;
 
-        [GameParameters.CustomParameterUI("Show Angle to Prograde")]
+        [GameParameters.CustomParameterUI("#autoLoc_Settings_showAngleToPrograde")]
         public bool showAngleToPrograde = false;
 
-        [GameParameters.CustomIntParameterUI("Width of display", minValue = 100, maxValue = 200)]
+        [GameParameters.CustomIntParameterUI("#autoLoc_Settings_displayWidth", minValue = 100, maxValue = 200)]
         public int displayWidth = 160;
 
-        [GameParameters.CustomIntParameterUI("Height of display", minValue = 100, maxValue = 200)]
+        [GameParameters.CustomIntParameterUI("#autoLoc_Settings_displayHeight", minValue = 100, maxValue = 200)]
         public int displayHeight = 160;
 
         public override void SetDifficultyPreset(GameParameters.Preset preset)
