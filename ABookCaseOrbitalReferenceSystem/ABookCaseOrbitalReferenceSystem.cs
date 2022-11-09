@@ -7,9 +7,6 @@ using KSP.Localization;
 
 namespace ABCORS
 {
-    /*
-     * 在飞行场景开始时创建一个 ABookCaseOrbitalReferenceSystem 实例，并在飞行场景结束时销毁。
-     */
     [KSPAddon(KSPAddon.Startup.Flight, false)]
     internal class ABookCaseOrbitalReferenceSystem : MonoBehaviour
     {
@@ -17,17 +14,16 @@ namespace ABCORS
         private bool _isTarget = false;
 
         private Orbit _hitOrbit = null;
-        private Vector3 _hitScreenPoint = new Vector3(0, 0, 0);//实例化一个名为 _hitScreenPoint 的三维向量，采用左手坐标系法则。可能是用于获取鼠标在屏幕上的位置。
+        private Vector3 _hitScreenPoint = new Vector3(0, 0, 0);
         private double _hitUT = 0;
 
-        private Rect _popup = new Rect(0f, 0f, 160f, 160f);//创建一个长和宽都为160的矩形，为浮点数(float)
+        private Rect _popup = new Rect(0f, 0f, 160f, 160f);
 
 
 
         protected void Start()
         {
             _popup.Set(0, 0, HighLogic.CurrentGame.Parameters.CustomParams<ABCORSSettings>().displayWidth, HighLogic.CurrentGame.Parameters.CustomParams<ABCORSSettings>().displayHeight);
-            //设置鼠标经过追踪站上激活的轨道时显示的数据的长、宽。_popup.x=0和_popup.y=0可能表示该菜单位于鼠标指针正上方。
         }
 
         private void Awake()
