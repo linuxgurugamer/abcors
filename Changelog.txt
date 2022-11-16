@@ -1,5 +1,9 @@
 Changelog
 
+0.5.1.6
+	Thanks to github user @rainsdm for this
+		Localization added, files available for english and chinese
+
 0.5.1.5
 	Thanks to github user @lampeh for this fix:
 		Only show popup in map view
