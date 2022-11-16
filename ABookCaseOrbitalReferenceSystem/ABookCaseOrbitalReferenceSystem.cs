@@ -3,6 +3,7 @@ using UnityEngine;
 using KSP.IO;
 using System.Linq;
 using System.Globalization;
+using KSP.Localization;
 
 namespace ABCORS
 {
@@ -22,7 +23,7 @@ namespace ABCORS
 
         protected void Start()
         {
-            _popup.Set(0, 0, HighLogic.CurrentGame.Parameters.CustomParams<ABCORSSettings>().displayWidth, HighLogic.CurrentGame.Parameters.CustomParams<ABCORSSettings>().displayWidth);
+            _popup.Set(0, 0, HighLogic.CurrentGame.Parameters.CustomParams<ABCORSSettings>().displayWidth, HighLogic.CurrentGame.Parameters.CustomParams<ABCORSSettings>().displayHeight);
         }
 
         private void Awake()
@@ -54,17 +55,21 @@ namespace ABCORS
             double speed = orbit.getOrbitalSpeedAt(orbit.getObtAtUT(_hitUT));
 
             string labelText = "";
+            string Time = Localizer.Format("#autoLoc_Main_Time");
+            string Altitude = Localizer.Format("#autoLoc_Main_Altitude");
+            string Speed = Localizer.Format("#autoLoc_Main_Speed");
+            string AngleToPrograde = Localizer.Format("#autoLoc_Main_AngleToPrograde");
             if (HighLogic.CurrentGame.Parameters.CustomParams<ABCORSSettings>().showTime)
             {
-                labelText += "T: " + KSPUtil.PrintTime((int)(Planetarium.GetUniversalTime() - _hitUT), 5, true) + "\n";
+                labelText += Time + KSPUtil.PrintTime((int)(Planetarium.GetUniversalTime() - _hitUT), 5, true) + "\n";
             }
             if (HighLogic.CurrentGame.Parameters.CustomParams<ABCORSSettings>().showAltitude)
             {
-                labelText += "Alt: " + altitude.ToString("N0", CultureInfo.CurrentCulture) + "m\n";
+                labelText += Altitude + altitude.ToString("N0", CultureInfo.CurrentCulture) + "m\n";
             }
             if (HighLogic.CurrentGame.Parameters.CustomParams<ABCORSSettings>().showSpeed)
             {
-                labelText += "Vel: " + speed.ToString("N0", CultureInfo.CurrentCulture) + "m/s\n";
+                labelText += Speed + speed.ToString("N0", CultureInfo.CurrentCulture) + "m/s\n";
             }
             if (HighLogic.CurrentGame.Parameters.CustomParams<ABCORSSettings>().showAngleToPrograde && orbit.referenceBody.orbit != null)
             {
@@ -77,7 +82,7 @@ namespace ABCORS
                     angle = 360 - angle;
                 }
 
-                labelText += "\u03B1P: " + angle.ToString("N1", CultureInfo.CurrentCulture) + "\u00B0\n";
+                labelText += AngleToPrograde + angle.ToString("N1", CultureInfo.CurrentCulture) + "\u00B0\n";
             }
 
             GUILayout.BeginArea(GUIUtility.ScreenToGUIRect(_popup));
