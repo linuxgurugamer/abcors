@@ -1,5 +1,9 @@
 Changelog
 
+0.5.1.7
+	Thanks to github user @frankieorabona for this
+		Added Italian translation
+
 0.5.1.6
 	Thanks to github user @rainsdm for this
 		Localization added, files available for english and chinese
