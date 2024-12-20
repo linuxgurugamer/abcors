@@ -1,5 +1,9 @@
 Changelog
 
+0.5.1.8
+	Updated README
+	Updated version file to use github for version info
+
 0.5.1.7
 	Thanks to github user @frankieorabona for this
 		Added Italian translation
