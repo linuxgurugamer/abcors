@@ -20,6 +20,20 @@ Main change is that there is now a Settings page, available in the stock setting
 
 The mouse is not shown in the screenshots, but I'm sure you can imagine it.
 
+New change is now the ability to set an alarm, either KAC, Stock or both, at a specific point in orbit.  Since left-clicking on a point on the orbit brings up the stock dialog to create a maneuver or warp to that point, the default activation is a right-click which brings up a new window.  This windows will let you set the title and description of the new alarm, and then to add it to KAC (if it's installed) or the Stock alarm.  You can choose to add it to both if you like.  
+New settings have been added to support this (default values are shown):
+
+    Setting                                 Default value
+    Show dialog to add alarm                true
+    Use Left Button to show alarm dialog    false
+    Use Right Button to show alarm dialog   true
+    Ignore stock alarm if KAC is installed  true
+
+
+
+
+
+
 https://i.imgur.com/KSCpl50.png
 
  

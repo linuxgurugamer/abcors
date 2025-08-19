@@ -1,4 +1,4 @@
-﻿using System.IO;
+using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,8 +16,8 @@ namespace ABCORS
     {
         public override string Title { get { return ""; } }
         public override GameParameters.GameMode GameMode { get { return GameParameters.GameMode.ANY; } }
-        public override string Section { get { return "ABCORS"; } }
-        public override string DisplaySection { get { return "ABCORS"; } }
+        public override string Section { get { return Localizer.Format("#LOC_ABCORS_ABCORS"); } }
+        public override string DisplaySection { get { return Localizer.Format("#LOC_ABCORS_ABCORS"); } }
         public override int SectionOrder { get { return 1; } }
         public override bool HasPresets { get { return false; } }
 
@@ -41,6 +41,22 @@ namespace ABCORS
 
         [GameParameters.CustomIntParameterUI("#autoLoc_Settings_displayHeight", minValue = 100, maxValue = 200)]
         public int displayHeight = 160;
+
+
+
+        [GameParameters.CustomParameterUI("Show dialog to add alarm")]
+        public bool showAlarmDialog = true;
+
+        [GameParameters.CustomParameterUI("Use Left Button to show alarm dialog")]
+        public bool useLeftButton = false;
+
+        [GameParameters.CustomParameterUI("Use Right Button to show alarm dialog")]
+        public bool useRightButton = true;
+
+        [GameParameters.CustomParameterUI("Ignore stock alarm if KAC is installed")]
+        public bool ignoreStock = true;
+
+
 
         public override void SetDifficultyPreset(GameParameters.Preset preset)
         { }

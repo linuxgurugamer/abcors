@@ -31,8 +31,7 @@
 
 # 3:SOURCEFILE, DESTDIR
 3:ABCORS.version,GameData/ABCORS
-#3:LICENSE.md,GameData/KerbalHotSeat
-#3:README.md,GameData/KerbalHotSeat
+3:Changelog.cfg,GameData/ABCORS
 
 # 4:SOURCDIR, DESTDIR
 #4:Textures,GameData/ManeuverQueue/Textures

@@ -1,5 +1,10 @@
 Changelog
 
+0.5.2 
+	Changed the Update to FixedUpdate, no need to check every update, FixedUpdate is 50x/sec which is more than enough
+	Added ability to set an alarm, either KAC or stock (or both)
+	Updated translation files with new strings
+
 0.5.1.8
 	Updated README
 	Updated version file to use github for version info

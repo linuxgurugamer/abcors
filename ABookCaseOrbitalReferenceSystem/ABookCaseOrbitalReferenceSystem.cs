@@ -1,9 +1,9 @@
-﻿using System;
-using UnityEngine;
-using KSP.IO;
-using System.Linq;
-using System.Globalization;
+﻿using ABCORS_KACWrapper;
 using KSP.Localization;
+using System;
+using System.Globalization;
+using System.Linq;
+using UnityEngine;
 
 namespace ABCORS
 {
@@ -24,6 +24,13 @@ namespace ABCORS
         protected void Start()
         {
             _popup.Set(0, 0, HighLogic.CurrentGame.Parameters.CustomParams<ABCORSSettings>().displayWidth, HighLogic.CurrentGame.Parameters.CustomParams<ABCORSSettings>().displayHeight);
+
+            KACWrapper.InitKACWrapper();
+            if (KACWrapper.APIReady)
+            {
+                //All good to go
+                Debug.Log("ABCORS KACWrapper.KAC.Alarms.Count: " + KACWrapper.KAC.Alarms.Count);
+            }
         }
 
         private void Awake()
@@ -32,7 +39,7 @@ namespace ABCORS
                 Screen.height * 0.5f - _popup.height * 0.5f);
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             _mouseOver = MapView.MapIsEnabled && MouseOverOrbit();
 
@@ -65,11 +72,11 @@ namespace ABCORS
             }
             if (HighLogic.CurrentGame.Parameters.CustomParams<ABCORSSettings>().showAltitude)
             {
-                labelText += Altitude + altitude.ToString("N0", CultureInfo.CurrentCulture) + "m\n";
+                labelText += Altitude + altitude.ToString("N0", CultureInfo.CurrentCulture) + "m\n";  // NO_LOCALIZATION
             }
             if (HighLogic.CurrentGame.Parameters.CustomParams<ABCORSSettings>().showSpeed)
             {
-                labelText += Speed + speed.ToString("N0", CultureInfo.CurrentCulture) + "m/s\n";
+                labelText += Speed + speed.ToString("N0", CultureInfo.CurrentCulture) + "m/s\n"; // NO_LOCALIZATION
             }
             if (HighLogic.CurrentGame.Parameters.CustomParams<ABCORSSettings>().showAngleToPrograde && orbit.referenceBody.orbit != null)
             {
@@ -86,11 +93,12 @@ namespace ABCORS
             }
 
             GUILayout.BeginArea(GUIUtility.ScreenToGUIRect(_popup));
-            GUIStyle labelStyle = new GUIStyle(GUI.skin.GetStyle("Label"));
+            GUIStyle labelStyle = new GUIStyle(GUI.skin.GetStyle("Label"));  // NO_LOCALIZATION
             if (_isTarget)
                 labelStyle.normal.textColor = Color.cyan;
             GUILayout.Label(labelText, labelStyle);
             GUILayout.EndArea();
+            MouseEvent();
         }
 
         private bool MouseOverOrbit()
@@ -175,6 +183,19 @@ namespace ABCORS
             }
 
             return result;
+        }
+
+        private void MouseEvent()
+        {
+            if (HighLogic.CurrentGame.Parameters.CustomParams<ABCORSSettings>().showAlarmDialog &&
+                (HighLogic.CurrentGame.Parameters.CustomParams<ABCORSSettings>().useRightButton && Input.GetKey(KeyCode.Mouse1) ||
+                (HighLogic.CurrentGame.Parameters.CustomParams<ABCORSSettings>().useLeftButton && Input.GetKey(KeyCode.Mouse0)))
+                )
+            {
+                if (AlarmManager.am == null)
+                    AlarmManager.am =  new GameObject().AddComponent<AlarmManager>();
+                AlarmManager.AlarmTime = _hitUT;
+            }
         }
     }
 }
