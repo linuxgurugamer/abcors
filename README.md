@@ -8,7 +8,9 @@ Forum user @zentarul made this nice little mod at the request of Twitch streamer
 
 This is a request from ABookCase who wanted a simple mod that displays altitude of an orbit at a point by hovering the mouse over it. 
 
+
 Dependencies
+
    ClickThroughBlocker
    ToolbarController
 
