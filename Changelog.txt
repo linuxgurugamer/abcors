@@ -1,5 +1,8 @@
 Changelog
 
+0.5.4
+	Added clamping alarm window to screen edges, so it cannot be dragged off screen
+
 0.5.3 
 	Thanks to github user @infradmin4KSP for these fixes:
 		Fixed localization for the last four lines in the settings 
@@ -9,7 +12,6 @@ Changelog
 	Added Marquee scrolling for the alarm box.
 	Added code to save current window position
 	Added option to open window at mouse position
-
 
 0.5.2 
 	Changed the Update to FixedUpdate, no need to check every update, FixedUpdate is 50x/sec which is more than enough
