@@ -1,12 +1,14 @@
 Changelog
 
-0.5.3 (unreleased)
+0.5.3 
 	Thanks to github user @infradmin4KSP for these fixes:
-		As I already said before — last four lines in the settings do not have localisation at all (pic. 1). I found them in the Settings.cs and could fix this for you but I have also another consideration (see below).
-		Altitude and speed (at popup, pic. 2) has no localisation for units of measurement. I don't know why, the rest (e.g. time) is localised properly. For these two you could use stock game localisation strings #autoLOC_289929 and #autoLOC_289933 respectively. Also is it possible to localise decimal and thousands separators?
-		At the popup (all lines, pic. 2) as well as alarm dialog window (alarm time only, pic. 3) spaces are required between the colon and the number, and between the number and the unit (except degrees).
+		Fixed localization for the last four lines in the settings 
+		Fixed localisation for units of measurement.
+		Added spaces are between the colon and the number, and between the number and the unit (except degrees).
 	Added check for the StockAlarmDisabler, if it is installed, do not show the stock alarm button
 	Added Marquee scrolling for the alarm box.
+	Added code to save current window position
+	Added option to open window at mouse position
 
 
 0.5.2 

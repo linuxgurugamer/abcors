@@ -55,6 +55,10 @@ namespace ABCORS
         public bool ignoreStock = true;
 
 
+        [GameParameters.CustomParameterUI("Open Dialog at mouse position")]
+        public bool openAtMouse = true;
+
+
 
         public override void SetDifficultyPreset(GameParameters.Preset preset)
         { }
