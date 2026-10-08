@@ -62,21 +62,24 @@ namespace ABCORS
             double speed = orbit.getOrbitalSpeedAt(orbit.getObtAtUT(_hitUT));
 
             string labelText = "";
-            string Time = Localizer.Format("#autoLoc_Main_Time");
-            string Altitude = Localizer.Format("#autoLoc_Main_Altitude");
-            string Speed = Localizer.Format("#autoLoc_Main_Speed");
-            string AngleToPrograde = Localizer.Format("#autoLoc_Main_AngleToPrograde");
+            string Time = Localizer.Format("#autoLoc_Main_Time")+" ";
+            string Altitude = Localizer.Format("#autoLoc_Main_Altitude") + " ";
+            string AltitudeUnit = " " + Localizer.Format("#autoLOC_289929");
+            string Speed = Localizer.Format("#autoLoc_Main_Speed") + " ";
+            string SpeedUnit = " " + Localizer.Format("#autoLOC_289933");
+            string AngleToPrograde = Localizer.Format("#autoLoc_Main_AngleToPrograde") + " ";
+            string AngleUnit = "\u00B0";
             if (HighLogic.CurrentGame.Parameters.CustomParams<ABCORSSettings>().showTime)
             {
-                labelText += Time + KSPUtil.PrintTime((int)(Planetarium.GetUniversalTime() - _hitUT), 5, true) + "\n";
+                labelText += Time + System.Text.RegularExpressions.Regex.Replace(KSPUtil.PrintTime((int)(Planetarium.GetUniversalTime() - _hitUT), 5, true), @"(\d+)(\p{L})", "$1 $2") + "\n";
             }
             if (HighLogic.CurrentGame.Parameters.CustomParams<ABCORSSettings>().showAltitude)
             {
-                labelText += Altitude + altitude.ToString("N0", CultureInfo.CurrentCulture) + "m\n";  // NO_LOCALIZATION
+                labelText += Altitude + altitude.ToString("N0", CultureInfo.CurrentCulture) + AltitudeUnit + "\n";
             }
             if (HighLogic.CurrentGame.Parameters.CustomParams<ABCORSSettings>().showSpeed)
             {
-                labelText += Speed + speed.ToString("N0", CultureInfo.CurrentCulture) + "m/s\n"; // NO_LOCALIZATION
+                labelText += Speed + speed.ToString("N0", CultureInfo.CurrentCulture) + SpeedUnit + "\n";
             }
             if (HighLogic.CurrentGame.Parameters.CustomParams<ABCORSSettings>().showAngleToPrograde && orbit.referenceBody.orbit != null)
             {
@@ -89,7 +92,7 @@ namespace ABCORS
                     angle = 360 - angle;
                 }
 
-                labelText += AngleToPrograde + angle.ToString("N1", CultureInfo.CurrentCulture) + "\u00B0\n";
+                labelText += AngleToPrograde + angle.ToString("N1", CultureInfo.CurrentCulture) + AngleUnit;
             }
 
             GUILayout.BeginArea(GUIUtility.ScreenToGUIRect(_popup));
@@ -193,7 +196,7 @@ namespace ABCORS
                 )
             {
                 if (AlarmManager.am == null)
-                    AlarmManager.am =  new GameObject().AddComponent<AlarmManager>();
+                    AlarmManager.am = new GameObject().AddComponent<AlarmManager>();
                 AlarmManager.AlarmTime = _hitUT;
             }
         }

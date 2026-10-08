@@ -61,16 +61,16 @@ namespace ABCORS
         {
             using (new GUILayout.VerticalScope())
             {
-                GUILayout.Label(Localizer.Format("#LOC_ABCORS_Alarm_time") + strAlarmtime);
+                GUILayout.Label(Localizer.Format("#LOC_ABCORS_Alarm_time") + " " + strAlarmtime);
                 using (new GUILayout.HorizontalScope())
                 {
-                    GUILayout.Label(Localizer.Format("#LOC_ABCORS_Title"), GUILayout.Width(50));
+                    GUILayout.Label(Localizer.Format("#LOC_ABCORS_Title"), GUILayout.Width(65));
                     title = GUILayout.TextField(title, GUILayout.Width(150));
                     GUILayout.FlexibleSpace();
                 }
                 using (new GUILayout.HorizontalScope())
                 {
-                    GUILayout.Label(Localizer.Format("#LOC_ABCORS_Descr"), GUILayout.Width(50));
+                    GUILayout.Label(Localizer.Format("#LOC_ABCORS_Descr"), GUILayout.Width(65));
                     descr = GUILayout.TextField(descr, GUILayout.MinWidth(150));
                     GUILayout.FlexibleSpace();
                 }

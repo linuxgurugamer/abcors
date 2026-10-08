@@ -42,18 +42,16 @@ namespace ABCORS
         [GameParameters.CustomIntParameterUI("#autoLoc_Settings_displayHeight", minValue = 100, maxValue = 200)]
         public int displayHeight = 160;
 
-
-
-        [GameParameters.CustomParameterUI("Show dialog to add alarm")]
+        [GameParameters.CustomParameterUI("#autoLoc_Settings_AllowDialog")]
         public bool showAlarmDialog = true;
 
-        [GameParameters.CustomParameterUI("Use Left Button to show alarm dialog")]
+        [GameParameters.CustomParameterUI("#autoLoc_Settings_UseLeft")]
         public bool useLeftButton = false;
 
-        [GameParameters.CustomParameterUI("Use Right Button to show alarm dialog")]
+        [GameParameters.CustomParameterUI("#autoLoc_Settings_UseRight")]
         public bool useRightButton = true;
 
-        [GameParameters.CustomParameterUI("Ignore stock alarm if KAC is installed")]
+        [GameParameters.CustomParameterUI("#autoLoc_Settings_IgnoreStock")]
         public bool ignoreStock = true;
 
 
