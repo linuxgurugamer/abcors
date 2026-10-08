@@ -19,7 +19,18 @@ namespace ABCORS
 
         private Rect _popup = new Rect(0f, 0f, 160f, 160f);
 
+        internal static bool stockAlarmDisabler = false;
+        public static bool IsDllLoaded(string dllName)
+        {
+            // Accept either "ToolbarController" or "ToolbarController.dll"
+            string assemblyName = System.IO.Path.GetFileNameWithoutExtension(dllName);
 
+            return AssemblyLoader.loadedAssemblies.Any(a =>
+                string.Equals(
+                    a.assembly.GetName().Name,
+                    assemblyName,
+                    StringComparison.OrdinalIgnoreCase));
+        }
 
         protected void Start()
         {
@@ -31,6 +42,8 @@ namespace ABCORS
                 //All good to go
                 Debug.Log("ABCORS KACWrapper.KAC.Alarms.Count: " + KACWrapper.KAC.Alarms.Count);
             }
+            stockAlarmDisabler = IsDllLoaded("StockAlarmClockDisabler");
+            Debug.Log("StockAlarmClockDisabler loaded: " + stockAlarmDisabler);
         }
 
         private void Awake()

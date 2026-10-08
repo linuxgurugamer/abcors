@@ -52,6 +52,7 @@ namespace ABCORS
             am = null;
         }
 
+
         public void OnGUI()
         {
             alarmManagerWin = ClickThruBlocker.GUILayoutWindow(565949, alarmManagerWin, AlarmManagerWin, Localizer.Format("#LOC_ABCORS_ABCORS_Alarm_Manager"), winStyle);
@@ -65,13 +66,15 @@ namespace ABCORS
                 using (new GUILayout.HorizontalScope())
                 {
                     GUILayout.Label(Localizer.Format("#LOC_ABCORS_Title"), GUILayout.Width(65));
-                    title = GUILayout.TextField(title, GUILayout.Width(150));
+                    //title = GUILayout.TextField(title, GUILayout.Width(150));
+                    title = ABCORS.Utils.ScrollingTextFieldHelper.TextField("title", title, width:150);
                     GUILayout.FlexibleSpace();
                 }
                 using (new GUILayout.HorizontalScope())
                 {
                     GUILayout.Label(Localizer.Format("#LOC_ABCORS_Descr"), GUILayout.Width(65));
-                    descr = GUILayout.TextField(descr, GUILayout.MinWidth(150));
+                    // descr = GUILayout.TextField(descr, GUILayout.MinWidth(150));
+                    descr = ABCORS.Utils.ScrollingTextFieldHelper.TextField("descr", descr, width: 150);
                     GUILayout.FlexibleSpace();
                 }
                 GUILayout.Space(20);
@@ -93,7 +96,7 @@ namespace ABCORS
 
                     }
                 }
-                if (!KACWrapper.APIReady || !HighLogic.CurrentGame.Parameters.CustomParams<ABCORSSettings>().ignoreStock)
+                if (!ABookCaseOrbitalReferenceSystem.stockAlarmDisabler && (!KACWrapper.APIReady || !HighLogic.CurrentGame.Parameters.CustomParams<ABCORSSettings>().ignoreStock))
                 {
                     if (GUILayout.Button(Localizer.Format("#LOC_ABCORS_Set_Stock_Alarm")))
                     {
